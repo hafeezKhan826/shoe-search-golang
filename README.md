@@ -1,4 +1,5 @@
 ----> To run the application <----
+
 Run "go run main.go"
 
 
