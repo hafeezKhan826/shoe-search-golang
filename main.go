@@ -100,26 +100,23 @@ func main() {
 	fmt.Println("------------> Searching for shoe of size: ", toFindSize, " and color ", toFindColor, " <------------")
 	// fmt.Print("asdf: ", found, toFindSize, toFindColor)
 
-	afterFuncTimer := time.AfterFunc(time.Second*3, func() {
-		fmt.Printf("Congratulations! Your 3 second AfterFunc() timer finished.\n")
+	fmt.Printf("Congratulations! Your 3 second AfterFunc() timer finished.\n")
+	found := findMyShoe(toFindSize, toFindColor)
+
+	if found {
+		fmt.Println("------------> Shoe found <------------")
+	}
+	for !found {
+		fmt.Println("------------> Shoe not found <------------")
+		fmt.Println("------------> Restocking <------------")
+		pushShoes(5)
 		found := findMyShoe(toFindSize, toFindColor)
-
 		if found {
-			fmt.Println("------------> Shoe found <------------")
+			fmt.Println("------------> Shoe search completed <------------")
+			return
 		}
-		for !found {
-			fmt.Println("------------> Shoe not found <------------")
-			fmt.Println("------------> Restocking <------------")
-			pushShoes(5)
-			found := findMyShoe(toFindSize, toFindColor)
-			if found {
-				fmt.Println("------------> Shoe search completed <------------")
-				return
-			}
-		}
+	}
 
-		fmt.Println("------------> Shoe search completed <------------")
-	})
-	defer afterFuncTimer.Stop()
+	fmt.Println("------------> Shoe search completed <------------")
 
 }
